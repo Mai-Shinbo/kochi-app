@@ -1,4 +1,3 @@
-// 地図初期化
 const map = L.map("map").setView([33.5588836,133.5312602], 13);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -9,7 +8,6 @@ let userMarker;
 let shelterMarkers = [];
 let routeLine;
 
-// 避難所データ
 const shelters = [
   {name:"第四小学校",lat:33.5583463,lng:133.5244659},
 {name:"高知市役所本庁舎",lat:33.5584977,lng:133.5315975},
@@ -50,7 +48,6 @@ const shelters = [
 ];
 ];
 
-// 現在地取得
 function getLocation() {
   navigator.geolocation.getCurrentPosition(pos => {
     const lat = pos.coords.latitude;
@@ -73,7 +70,6 @@ function getLocation() {
 }
 
 
-// 避難所表示
 function showShelters() {
   shelterMarkers.forEach(m => map.removeLayer(m));
   shelterMarkers = [];
@@ -86,7 +82,6 @@ function showShelters() {
   });
 }
 
-// 最寄り避難所へ
 function routeToShelter() {
   if (!userMarker) {
     alert("先に現在地を取得してください");
