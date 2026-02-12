@@ -9,7 +9,7 @@ let userMarker;
 let shelterMarkers = [];
 let routeLine;
 
-// 避難所データ（例）
+// 避難所データ
 const shelters = [
   {name:"第四小学校",lat:33.5583463,lng:133.5244659},
 {name:"高知市役所本庁舎",lat:33.5584977,lng:133.5315975},
@@ -58,14 +58,20 @@ function getLocation() {
 
     if (userMarker) map.removeLayer(userMarker);
 
-    userMarker = L.marker([lat, lng])
-      .addTo(map)
-      .bindPopup("現在地")
-      .openPopup();
+    userMarker = L.circleMarker([lat, lng], {
+      radius: 10,
+      color: "#007bff",
+      fillColor: "#007bff",
+      fillOpacity: 0.8
+    })
+    .addTo(map)
+    .bindPopup("現在地")
+    .openPopup();
 
     map.setView([lat, lng], 15);
   });
 }
+
 
 // 避難所表示
 function showShelters() {
